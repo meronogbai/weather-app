@@ -1,12 +1,8 @@
-function celsiustoFahrenheit(degree) {
-  return Math.round(1.8 * degree + 32);
-}
+const celsiustoFahrenheit = (degree) => Math.round(1.8 * degree + 32);
 
-function fahrenheitToCelsius(degree) {
-  return Math.round((degree - 32) / 1.8);
-}
+const fahrenheitToCelsius = (degree) => Math.round((degree - 32) / 1.8);
 
-function addDegreeToggler(content) {
+const addDegreeToggler = (content) => {
   const degreeToggle = document.createElement('button');
   degreeToggle.classList = 'btn btn-success';
   degreeToggle.textContent = 'Convert to Fahrenheit';
@@ -23,9 +19,9 @@ function addDegreeToggler(content) {
     }
   });
   content.appendChild(degreeToggle);
-}
+};
 
-function setBackground(icon) {
+const setBackground = (icon) => {
   const body = document.querySelector('body');
   if (icon.slice(-1) === 'd') {
     body.classList.add('day');
@@ -34,8 +30,9 @@ function setBackground(icon) {
     body.classList.add('night');
     body.classList.remove('day');
   }
-}
-export function displayLoadingGif(content) {
+};
+
+export const displayLoadingGif = (content) => {
   if (document.querySelector('#loading')) {
     return null;
   }
@@ -45,9 +42,9 @@ export function displayLoadingGif(content) {
   loading.id = 'loading';
   content.appendChild(loading);
   return true;
-}
+};
 
-export function displayWeather(data, content) {
+export const displayWeather = (data, content) => {
   const location = document.createElement('p');
   location.textContent = `${data.city}, ${data.country}`;
   location.setAttribute('id', 'location');
@@ -66,8 +63,8 @@ export function displayWeather(data, content) {
   content.appendChild(temp);
   content.appendChild(weatherInfo);
   addDegreeToggler(content);
-}
+};
 
-export function displayError(content) {
+export const displayError = (content) => {
   content.innerHTML = '<p>Please input a valid city.</p>';
-}
+};
