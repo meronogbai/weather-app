@@ -8,7 +8,7 @@ async function getWeatherData(location, apiKey) {
 export default async function formattedWeatherData(location, apiKey) {
   const data = await getWeatherData(location, apiKey);
   return {
-    temp: data.main.temp,
+    temp: Math.round(data.main.temp - 273.15),
     city: data.name,
     country: data.sys.country,
     weather: { icon: data.weather[0].icon, description: data.weather[0].description },
