@@ -25,10 +25,21 @@ function addDegreeToggler(content) {
   content.appendChild(degreeToggle);
 }
 
+function setBackground(icon) {
+  const body = document.querySelector('body');
+  if (icon.slice(-1) === 'd') {
+    body.classList.add('day');
+    body.classList.remove('night');
+  } else {
+    body.classList.add('night');
+    body.classList.remove('day');
+  }
+}
 export function displayLoadingGif(content) {
   if (document.querySelector('#loading')) {
     return null;
   }
+  content.innerHTML = '';
   const loading = document.createElement('img');
   loading.src = 'https://i.gifer.com/ZZ5H.gif';
   loading.id = 'loading';
@@ -50,6 +61,7 @@ export function displayWeather(data, content) {
   <p>${data.weather.description}</p>
   `;
   content.innerHTML = '';
+  setBackground(data.weather.icon);
   content.appendChild(location);
   content.appendChild(temp);
   content.appendChild(weatherInfo);

@@ -1,7 +1,11 @@
-body {
+#weatherInfo {
+  text-transform: capitalize;
+}
+
+.day {
   background-color: #cff4fc;
 }
 
-#weatherInfo {
-  text-transform: capitalize;
+.night {
+  background-color: #ededed;
 }
