@@ -1,0 +1,7 @@
+body {
+  background-color: #cff4fc;
+}
+
+#weatherInfo {
+  text-transform: capitalize;
+}
