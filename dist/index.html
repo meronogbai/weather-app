@@ -9,13 +9,16 @@
 </head>
 
 <body>
-  <form class="container-fluid">
-    <div class="mb-3">
-      <label for="city" class="form-label">City</label>
-      <input type="text" class="form-control" id="city" placeholder="New York" required>
-    </div>
-    <input type="submit" value="Forecast" class="btn btn-primary">
-  </form>
+  <main class="container">
+    <form>
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" placeholder="New York" required>
+      </div>
+      <input type="submit" value="Forecast" class="btn btn-primary">
+    </form>
+    <div id="content"></div>
+  </main>
   <script src="bundle.js" type="module"></script>
 </body>
 
