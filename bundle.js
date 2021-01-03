@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/display.js":
+/*!************************!*\
+  !*** ./src/display.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"displayLoadingGif\": () => /* binding */ displayLoadingGif,\n/* harmony export */   \"displayWeather\": () => /* binding */ displayWeather\n/* harmony export */ });\nfunction displayLoadingGif(content) {\n  if (document.querySelector('#loading')) {\n    return null;\n  }\n  const loading = document.createElement('img');\n  loading.src = '../src/loading.gif';\n  loading.id = 'loading';\n  content.appendChild(loading);\n  return true;\n}\n\nfunction displayWeather(data, content) {\n  const location = document.createElement('p');\n  location.textContent = `${data.city}, ${data.country}`;\n  const temp = document.createElement('p');\n  temp.textContent = `${data.temp}K`;\n  const icon = document.createElement('div');\n  icon.innerHTML = `\n    <img src='http://openweathermap.org/img/wn/${data.weather.icon}@2x.png'>\n    <p>${data.weather.description}</p>\n  `;\n  content.innerHTML = '';\n  content.appendChild(location);\n  content.appendChild(temp);\n  content.appendChild(icon);\n}\n\n\n//# sourceURL=webpack://weather-app/./src/display.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather-api */ \"./src/weather-api.js\");\n\n\nconst apiKey = '3f4751a98d27d8f410e99e9589eaf508';\nconst content = document.getElementById('content');\nconst form = document.forms[0];\n\nfunction displayWeather(data, content) {\n  const location = document.createElement('p');\n  location.textContent = `${data.city}, ${data.country}`;\n  const temp = document.createElement('p');\n  temp.textContent = `${data.temp}K`;\n  content.innerHTML = '';\n  content.appendChild(location);\n  content.appendChild(temp);\n}\n\nfunction displayLoadingGif(content) {\n  if (document.querySelector('#loading')) {\n    return null;\n  }\n  const loading = document.createElement('img');\n  loading.src = '../src/loading.gif';\n  loading.id = 'loading';\n  content.appendChild(loading);\n  return true;\n}\n\nform.addEventListener('submit', async e => {\n  e.preventDefault();\n  const city = document.getElementById('city').value;\n  displayLoadingGif(content);\n  const data = await (0,_weather_api__WEBPACK_IMPORTED_MODULE_0__.default)(city, apiKey);\n  displayWeather(data, content);\n  form.reset();\n});\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather-api */ \"./src/weather-api.js\");\n/* harmony import */ var _display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./display */ \"./src/display.js\");\n\n\n\nconst apiKey = '3f4751a98d27d8f410e99e9589eaf508';\nconst content = document.getElementById('content');\nconst form = document.forms[0];\n\nform.addEventListener('submit', async e => {\n  e.preventDefault();\n  const city = document.getElementById('city').value;\n  (0,_display__WEBPACK_IMPORTED_MODULE_1__.displayLoadingGif)(content);\n  const data = await (0,_weather_api__WEBPACK_IMPORTED_MODULE_0__.default)(city, apiKey);\n  (0,_display__WEBPACK_IMPORTED_MODULE_1__.displayWeather)(data, content);\n  form.reset();\n});\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wea
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => /* binding */ formattedWeatherData\n/* harmony export */ });\nasync function getWeatherData(location, apiKey) {\n  const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;\n  const data = await fetch(endpoint);\n  const weatherData = await data.json();\n  return weatherData;\n}\n\nasync function formattedWeatherData(location, apiKey) {\n  const data = await getWeatherData(location, apiKey);\n  return {\n    temp: data.main.temp,\n    city: data.name,\n    country: data.sys.country,\n  };\n}\n\n//# sourceURL=webpack://weather-app/./src/weather-api.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => /* binding */ formattedWeatherData\n/* harmony export */ });\nasync function getWeatherData(location, apiKey) {\n  const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;\n  const data = await fetch(endpoint);\n  const weatherData = await data.json();\n  return weatherData;\n}\n\nasync function formattedWeatherData(location, apiKey) {\n  const data = await getWeatherData(location, apiKey);\n  return {\n    temp: data.main.temp,\n    city: data.name,\n    country: data.sys.country,\n    weather: { icon: data.weather[0].icon, description: data.weather[0].description },\n  };\n}\n\n//# sourceURL=webpack://weather-app/./src/weather-api.js?");
 
 /***/ })
 
