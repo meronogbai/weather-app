@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather-api */ \"./src/weather-api.js\");\n\n\nconst apiKey = '3f4751a98d27d8f410e99e9589eaf508';\n\nconst form = document.forms[0];\n\nform.addEventListener('submit', async e => {\n  e.preventDefault();\n  const city = document.getElementById('city').value;\n  console.log(await (0,_weather_api__WEBPACK_IMPORTED_MODULE_0__.default)(city, apiKey));\n  form.reset();\n});\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather-api */ \"./src/weather-api.js\");\n\n\nconst apiKey = '3f4751a98d27d8f410e99e9589eaf508';\n\nconst form = document.forms[0];\n\nfunction displayWeather(data) {\n  const content = document.getElementById('content');\n  content.innerHTML = '';\n  const location = document.createElement('p');\n  location.textContent = `${data.city}, ${data.country}`;\n  const temp = document.createElement('p');\n  temp.textContent = `${data.temp}K`;\n  content.appendChild(location);\n  content.appendChild(temp);\n}\nform.addEventListener('submit', async e => {\n  e.preventDefault();\n  const city = document.getElementById('city').value;\n  const data = await (0,_weather_api__WEBPACK_IMPORTED_MODULE_0__.default)(city, apiKey);\n  displayWeather(data);\n  form.reset();\n});\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ }),
 
