@@ -1,17 +1,12 @@
-const apiKey = '3f4751a98d27d8f410e99e9589eaf508';
-async function getWeatherData(location) {
-  const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;
-  const data = await fetch(endpoint);
-  const weatherData = await data.json();
-  return weatherData;
-}
+import formattedWeatherData from './weather-api';
 
-async function formattedWeatherData(location) {
-  const data = await getWeatherData(location);
-  return {
-    temp: data.main.temp,
-    city: data.name,
-    country: data.sys.country,
-  };
-}
-formattedWeatherData('jeddah').then(res => console.log(res));
+const apiKey = '3f4751a98d27d8f410e99e9589eaf508';
+
+const form = document.forms[0];
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const city = document.getElementById('city').value;
+  console.log(await formattedWeatherData(city, apiKey));
+  form.reset();
+});
