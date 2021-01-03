@@ -46,7 +46,7 @@ export function displayWeather(data, content) {
   const weatherInfo = document.createElement('div');
   weatherInfo.setAttribute('id', 'weatherInfo');
   weatherInfo.innerHTML = `
-  <img src='http://openweathermap.org/img/wn/${data.weather.icon}@2x.png'>
+  <img src='https://openweathermap.org/img/wn/${data.weather.icon}@2x.png'>
   <p>${data.weather.description}</p>
   `;
   content.innerHTML = '';
