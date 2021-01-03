@@ -10,6 +10,6 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("const apiKey = '3f4751a98d27d8f410e99e9589eaf508';\nasync function getWeatherData(location) {\n  const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;\n  const data = await fetch(endpoint);\n  const weather = await data.json();\n  console.log(weather.main.temp);\n}\ngetWeatherData('jeddah');\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("const apiKey = '3f4751a98d27d8f410e99e9589eaf508';\nasync function getWeatherData(location) {\n  const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;\n  const data = await fetch(endpoint);\n  const weatherData = await data.json();\n  return weatherData;\n}\n\nasync function formattedWeatherData(location) {\n  const data = await getWeatherData(location);\n  return {\n    temp: data.main.temp,\n    city: data.name,\n    country: data.sys.country,\n  };\n}\nformattedWeatherData('jeddah').then(res => console.log(res));\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 /******/ })()
 ;
