@@ -24,3 +24,7 @@ export function displayWeather(data, content) {
   content.appendChild(temp);
   content.appendChild(icon);
 }
+
+export function displayError(content) {
+  content.innerHTML = '<p>Please input a valid city.</p>';
+}
