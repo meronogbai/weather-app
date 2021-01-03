@@ -11,5 +11,6 @@ export default async function formattedWeatherData(location, apiKey) {
     temp: data.main.temp,
     city: data.name,
     country: data.sys.country,
+    weather: { icon: data.weather[0].icon, description: data.weather[0].description },
   };
 }
