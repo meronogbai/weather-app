@@ -1,0 +1,11 @@
+#weatherInfo {
+  text-transform: capitalize;
+}
+
+.day {
+  background-color: #cff4fc;
+}
+
+.night {
+  background-color: #ededed;
+}
