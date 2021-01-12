@@ -12,3 +12,7 @@
   background: #1F1C2C; 
   background: linear-gradient(to right, #928DAB, #1F1C2C);
 }
+
+.small-card {
+  width: 18rem;
+}
